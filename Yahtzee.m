@@ -186,7 +186,7 @@
 (*checkFourOfAKind[dices_]:=Module[{sum},sum=0;If[MatchQ[dices,{__,x_,x_,x_,x_}|{x_,x_,x_,x_,__}],sum=Total[dices],sum=0];*)
 (*Return[sum];];*)
 (**)
-(*(*checkFullHouse ha lo stesso numero di pattern di checkThreeOfAKind visto che cerchiamo un tris e una coppia. La coppia sar\[AGrave] di valori minori o maggiori dei valori del tris. *)*)
+(*(*checkFullHouse ha lo stesso numero di pattern di checkThreeOfAKind visto che cerchiamo un tris e una coppia. La coppia sar\[AGrave] di valori minori o maggiori dei valori del tris. la condizione /;x!=y fa in modo che con cinque dadi uguali non si attivi il full house. Incidentalmente, questo previene anche il caso in cui full house segna dei punti anche quando i dadi non sono ancora stati tirati.*)*)
 (*checkFullHouse[dices_]:=Module[{sum},sum=0;*)
 (*If[MatchQ[dices,({y_,y_,x_,x_,x_}|{x_,x_,x_,y_,y_})/;x!=y],sum=25,sum=0];*)
 (*Return[sum];];*)
