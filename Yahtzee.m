@@ -187,7 +187,8 @@
 (*Return[sum];];*)
 (**)
 (*(*checkFullHouse ha lo stesso numero di pattern di checkThreeOfAKind visto che cerchiamo un tris e una coppia. La coppia sar\[AGrave] di valori minori o maggiori dei valori del tris. *)*)
-(*checkFullHouse[dices_]:=Module[{sum}, sum = 0; If[MatchQ[dices,{y_,y_,x_,x_,x_}|{x_,x_,x_,y_,y_}]&&girato>0,sum=25,sum=0];*)
+(*checkFullHouse[dices_]:=Module[{sum},sum=0;*)
+(*If[MatchQ[dices,({y_,y_,x_,x_,x_}|{x_,x_,x_,y_,y_})/;x!=y],sum=25,sum=0];*)
 (*Return[sum];];*)
 (**)
 (*(*checkSmallStraight funziona un po' diversamente: ci sono solo 3 possibili combinazioni che risultano in uno small straight: 1,2,3,4 | 2,3,4,5 | 3,4,5,6 ma il quinto dado pu\[OGrave] essere uno qualunque tra 1 e 6. Usando gli OrderlessPattern possiamo ignorare l'ordine e concentrarci sul contenuto.*)*)
@@ -212,6 +213,3 @@
 (*End[]*)
 (**)
 (*EndPackage[]*)
-
-
-
