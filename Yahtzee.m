@@ -162,7 +162,7 @@
 (*start:=Module[{},NotebookEvaluate[FileNameJoin[{NotebookDirectory[],"START_GAME.nb"}]]];*)
 (**)
 (*(*utente restituisce il nome che abiamo preso in input. Per via del funzionamento della funzione di sort che usiamo in funzCreaStringa gli spazi non sono permessi quindi vengono eliminati prima di ritornare l'input. Se l'utente esce dalla schermata di input o non inserisce un nome gli viene assegnato il nome "Sconosciuto" dal sistema.*)*)
-(*utente:=Module[{}, nome =InputString["Dicci il tuo nome per cominciare! Gli spazi tra le parole saranno eliminati!"]; If[ToString[nome] == "$Canceled" || ToString[nome] == "" || ToString[nome] == " ",nome = "Sconosciuto",nome = StringRiffle[StringSplit[nome],""]]; Return[nome];];*)
+(*utente:=Module[{}, nome =InputString["Dicci il tuo nome per cominciare! Gli spazi tra le parole saranno eliminati!"]; If[ToString[nome] == "$Canceled" || ToString[nome] == "" || StringMatchQ[ToString[nome],Whitespace] ,nome = "Sconosciuto",nome = StringRiffle[StringSplit[nome],""]]; Return[nome];];*)
 (**)
 (**)
 (*(*Le funzioni check servono per controllare quanti punti un particolare set di dadi fa in una determinata categoria. Ci sono 14 funzioni check: 13 per le combinazione e una per il bonus(la funzione per il bonus \[EGrave] scritta direttamente nella tabella). Siccome le prime sei sono simili tra loro spieghiamo solo la prima. Tutte le funzioni restituiscono il numero di punti adatto secondo le regole di yahtzee oppure 0 se il pattern non viene riconosciuto.*)*)
@@ -210,6 +210,11 @@
 (*(*prev crea una lista di punteggi in questo modo: apre il file punteggi.txt e fa un import del contenuto riga per riga in una lista, StringSplit trasforma queste righe in liste di parole, di queste liste di parole droppiamo la prima che sar\[AGrave] sempre l'intestazione del file "----------HIGH SCORE----------", resta una lsita di liste di punteggi, ogni primo valore viene trasformato in numero perch\[EGrave] \[EGrave] il punteggio, a questo punto possiamo ordinare la lista di liste risultante in ordine decrescente. *)*)
 (*prev := Module[{},Return[ReverseSort[MapAt[ToExpression,{All,1}]@Drop[StringSplit[Import[FileNameJoin[{NotebookDirectory[],"punteggi.txt"}],{"Text","Lines"}]],1]]]];*)
 (**)
+(**)
+(**)
 (*End[]*)
 (**)
 (*EndPackage[]*)
+
+
+
