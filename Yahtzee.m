@@ -20,7 +20,7 @@
 (*Begin["Private`"]*)
 (**)
 (*(* Definiamo il costruttore del gioco definendo tutti i sui moduli logici e grafici*)*)
-(*YAHTZEE:=Module[{rollButton,girato=0,dice1Lock,dice2Lock,dice3Lock,dice4Lock,dice5Lock,dice1,dice2,dice3,dice4,dice5,listK,acesK,aces,twosK,twos,threesK,threes,foursK,fours,fivesK,fives,sixesK,sixes,threeOfAKindK,threeOfAKind,fourOfAKindK,fourOfAKind,fullHouseK,fullHouse,smallStraightK,smallStraight,largeStraightK,largeStraight,yahtzeeK,yahtzee,chanceK,chance,bonus,d1,d2,d3,d4,d5,oneDice,twoDice,threeDice,fourDice,fiveDice,color1,color2,color3,color4,color5,tabella,cleanCellsButton,clean,restartButton,highButton,rulesButton,saveButton,flagSave ,dices,listPoints,listPointSup,listPointInf,listCombinations,flagPunteggioSelezionato,reset ,turno,imgDice1,imgDice2,imgDice3,imgDice4,imgDice5,imgDice6},*)
+(*YAHTZEE:=Module[{rollButton,girato,dice1Lock,dice2Lock,dice3Lock,dice4Lock,dice5Lock,dice1,dice2,dice3,dice4,dice5,listK,acesK,aces,twosK,twos,threesK,threes,foursK,fours,fivesK,fives,sixesK,sixes,threeOfAKindK,threeOfAKind,fourOfAKindK,fourOfAKind,fullHouseK,fullHouse,smallStraightK,smallStraight,largeStraightK,largeStraight,yahtzeeK,yahtzee,chanceK,chance,bonus,d1,d2,d3,d4,d5,oneDice,twoDice,threeDice,fourDice,fiveDice,color1,color2,color3,color4,color5,tabella,cleanCellsButton,clean,restartButton,highButton,rulesButton,saveButton,closeButton,flagSave ,dices,listPoints,listPointSup,listPointInf,listCombinations,flagPunteggioSelezionato,reset ,turno,imgDice1,imgDice2,imgDice3,imgDice4,imgDice5,imgDice6},*)
 (**)
 (*(*importiamo le immagini per le facce dei dadi*)*)
 (*imgDice1:=Import[FileNameJoin[{NotebookDirectory[],"img","1_hd.png"}],ImageSize->35];*)
@@ -141,6 +141,9 @@
 (*(*Bottone per il salvataggio. Diventa cliccabile solo dopo aver giocato una partita intera, ovvero quando tutte le combinazioni sono state riempite. Quando il pulsante viene cliccato, la funzione al suo interno crea il file punteggi.txt se non esiste e aggiunge il punteggio realizzato al file. Se il file esiste gi\[AGrave] basta semplicemente aggiungere il punteggio. La funzione funzCreaStringa che fa la maggior parte del lavoro verr\[AGrave] spiegata sotto alla sua definizione.*)*)
 (*saveButton=Button["Salva Punteggio \|01f4be",{ If[AllTrue[listK,TrueQ],{If[FindFile["punteggi.txt"]!="",Export[FileNameJoin[{NotebookDirectory[],"punteggi.txt"}],StringJoin["----------HIGH SCORES----------\n",StringRiffle[funzCreaStringa[prev,{ToExpression[Total[listPoints]], "-", ToString[nome]}],"\n","\t"]]],Null],If[FindFile["punteggi.txt"]!=$Failed,Null,Export[FileNameJoin[{NotebookDirectory[],"punteggi.txt"}],StringJoin["----------HIGH SCORES----------\n",ToString[Total[listPoints]],"\t","-","\t",ToString[nome],"\n"]]]},Null],flagSave = False },Enabled->Dynamic[AllTrue[listK,TrueQ] && flagSave == True],Background->White,BaseStyle->{"GenericButton",12,Bold},ImageSize->{150,40}];*)
 (**)
+(*(*bottone che permette di chiudere il gioco, cancellando tutto cio\[OGrave] che \[EGrave] stato stampato*)*)
+(*closeButton=Button["Termina il gioco",{FrontEndTokenExecute["DeleteGeneratedCells"],clean},Background->Red,BaseStyle->{"GenericButton",12,Bold},ImageSize->{150,40}];*)
+(**)
 (*(*Da qui alla fine del modulo ci sono dei Print che ci permettono di creare il tabellone di gioco chiamando semplicemente YAHTZEE dal notebook principale.*)*)
 (*Print[Text[Style[StringJoin["\|01f468\:200d\|01f4bb Nome Giocatore: ",utente," \|01f468\:200d\|01f4bb"],FontSize->30]]];*)
 (**)
@@ -155,7 +158,7 @@
 (**)
 (*Print[saveButton];*)
 (**)
-(*Print["\n",cleanCellsButton,"\t",restartButton,"\t",highButton,"\t",rulesButton];*)
+(*Print["\n",cleanCellsButton,"\t",restartButton,"\t",highButton,"\t",rulesButton,"\t",closeButton];*)
 (*];*)
 (**)
 (*(*Permette di inizializzare una nuova partita*)*)
@@ -215,6 +218,3 @@
 (*End[]*)
 (**)
 (*EndPackage[]*)
-
-
-
